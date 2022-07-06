@@ -16,7 +16,6 @@ public class StartGame : MonoBehaviour
         startText.text = (timeLeft).ToString("0");
         if (timeLeft < 0)
         {
-            //Do something useful or Load a new game scene depending on your use-case
             Destroy(startText);
         }
 

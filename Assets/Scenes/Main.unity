@@ -979,7 +979,6 @@ MonoBehaviour:
   - {fileID: 1435667194}
   - {fileID: 186534019}
   - {fileID: 400458581}
-  m_BloodOverlay: {fileID: 0}
 --- !u!4 &1306993284
 Transform:
   m_ObjectHideFlags: 0

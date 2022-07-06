@@ -17,13 +17,11 @@ public class GameManager : MonoBehaviour
     public TankManager[] m_Tanks;               
     public List<Transform> wayPointsForAI;
 
-    public Image m_BloodOverlay;
-
     private int m_RoundNumber;                  
     private WaitForSeconds m_StartWait;         
     private WaitForSeconds m_EndWait;           
     private TankManager m_RoundWinner;          
-    private TankManager m_GameWinner;           
+    private TankManager m_GameWinner;          
 
 
     private void Start()

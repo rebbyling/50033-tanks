@@ -701,7 +701,6 @@ MonoBehaviour:
   m_ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   m_ExplosionPrefab: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
   m_CurrentHealth: 0
-  sprite: {fileID: 0}
 --- !u!114 &114284224917267974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 090ed0b4534d14e589708cf555b0c55f, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 3146665191111001144, guid: 981c8b4cb3d704756b52073e2420b6a2, type: 3}
 --- !u!1 &1454172298131356
 GameObject:
   m_ObjectHideFlags: 0
