@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class TankMovement : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class TankMovement : MonoBehaviour
     public AudioClip m_EngineIdling;       
     public AudioClip m_EngineDriving;      
     public float m_PitchRange = 0.2f;
+
+    private Text text;     
 
 
     private string m_MovementAxisName;     
@@ -23,6 +26,32 @@ public class TankMovement : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+
+        GameObject canvasGO = new GameObject();
+        canvasGO.name = "Canvas";
+        canvasGO.AddComponent<Canvas>();
+        canvasGO.AddComponent<CanvasScaler>();
+        canvasGO.AddComponent<GraphicRaycaster>();
+
+        // Get canvas from the GameObject.
+        Canvas canvas;
+        canvas = canvasGO.GetComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
+
+        GameObject textGO = new GameObject();
+        textGO.transform.parent = canvasGO.transform;
+        textGO.AddComponent<Text>();
+
+        text = textGO.GetComponent<Text>();
+        text.font = (Font) Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+        text.fontSize = 48;
+        text.alignment = TextAnchor.MiddleCenter;
+
+        RectTransform rectTransform;
+        rectTransform = text.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(0, 0, 0);
+        rectTransform.sizeDelta = new Vector2(600, 200);
     }
 
 
@@ -54,7 +83,24 @@ public class TankMovement : MonoBehaviour
         m_MovementInputValue = Input.GetAxis(m_MovementAxisName);
         m_TurnInputValue = Input.GetAxis(m_TurnAxisName);
 
-        EngineAudio ();
+        if (Input.GetKey("p")) 
+        {
+            Time.timeScale = 0;
+            text.text = $"Paused Game.\n Press 'r' to resume";
+            if (Input.GetKey("r")) 
+            {
+                Time.timeScale = 1;
+                text.text = string.Empty;
+            }
+        }
+
+        if (Input.GetKey("r")) 
+            {
+                Time.timeScale = 1;
+                text.text = string.Empty;
+            }
+
+        EngineAudio();
     }
 
 
@@ -96,4 +142,5 @@ public class TankMovement : MonoBehaviour
         Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
     }
+    
 }

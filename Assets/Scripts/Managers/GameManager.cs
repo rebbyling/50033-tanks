@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public TankManager[] m_Tanks;               
     public List<Transform> wayPointsForAI;
 
+    public Image m_BloodOverlay;
+
     private int m_RoundNumber;                  
     private WaitForSeconds m_StartWait;         
     private WaitForSeconds m_EndWait;           
@@ -28,6 +30,12 @@ public class GameManager : MonoBehaviour
     {
         m_StartWait = new WaitForSeconds(m_StartDelay);
         m_EndWait = new WaitForSeconds(m_EndDelay);
+
+        //make overlay transparent
+        // var tempColor = m_BloodOverlay.color;
+        // tempColor.a = 0f;
+        // m_BloodOverlay = tempColor;
+        // m_BloodOverlay.enabled = false;
 
         SpawnAllTanks();
         SetCameraTargets();
@@ -85,15 +93,27 @@ public class GameManager : MonoBehaviour
         m_RoundNumber++;
         m_MessageText.text = $"ROUND {m_RoundNumber}";
 
+        
+
         yield return m_StartWait;
     }
-
 
     private IEnumerator RoundPlaying()
     {
         EnableTankControl();
 
         m_MessageText.text = string.Empty;
+
+        if (Input.GetKey("p")) 
+        {
+            DisableTankControl();
+            m_MessageText.text =  $"Paused Game";
+            if (Input.GetKey("r")) 
+            {
+                EnableTankControl();
+                m_MessageText.text = string.Empty;
+            }
+        }
 
         while (!OneTankLeft()) yield return null;
     }

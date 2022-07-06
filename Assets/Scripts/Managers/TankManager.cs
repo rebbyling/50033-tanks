@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 [Serializable]
 public class TankManager
@@ -18,6 +19,7 @@ public class TankManager
     private TankShooting m_Shooting;
     private GameObject m_CanvasGameObject;
     private StateController m_StateController;
+
 
     public void SetupAI(List<Transform> wayPointList)
     {
